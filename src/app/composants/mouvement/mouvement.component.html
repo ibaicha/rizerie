@@ -1,0 +1,90 @@
+
+<br>
+
+<div class="container">
+    <div class="col-md-12">
+        <button class="btn btn-success" (click)="showAddMouvementEntreeForm()">Entrée <i class="fa fa-plus"></i></button>
+        <button class="btn btn-success" (click)="showAddMouvementSortieForm()">Sortie <i class="fa fa-plus"></i></button>
+        <div>
+      <mat-card>
+        <mat-card-content>
+               
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                                     (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header >
+                    <mat-panel-title>
+                     <h5>Détails des mouvements</h5>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      <h6>{{this.loginService.UserConnexion.Departement}} / {{this.loginService.UserConnexion.Entrepot}} / {{this.loginService.UserConnexion.Emplacement}}</h6>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+      
+      
+      <hr>
+      <div class="example-header">
+            <mat-form-field>
+              <input matInput  placeholder="Filtrer">
+            </mat-form-field>
+          </div>    
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource" matSort>
+            <!-- Date mouvement Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+             <!-- Date mouvement Column -->
+             <ng-container matColumnDef="date_mouvement">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> DATE </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.date_mouvement}} </mat-cell>
+              </ng-container>
+               <!-- Quantite entree Column -->
+             <ng-container matColumnDef="quantite_entree">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ENTREE </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.quantite_entree}} </mat-cell>
+              </ng-container>
+               <!-- Quantite sortie Column -->
+             <ng-container matColumnDef="quantite_sortie">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> SORTIE </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.quantite_sortie}} </mat-cell>
+              </ng-container>
+ 
+      
+        
+              <ng-container matColumnDef="actionsColumn">
+                <mat-header-cell *matHeaderCellDef>
+                  
+                  <button class="btn btn-success" (click)="showAddExigibleForm()">Ajout <i class="fa fa-plus"></i></button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button class="btn btn-info" (click)="showEditMouvementForm(element)"> <i class="fa fa-edit"></i></button>
+                    <button class="btn btn-danger" (click)="showDeleteMouvementForm(element)"> <i class="fa fa-remove"></i></button>
+      
+                </mat-cell>
+            </ng-container>
+      
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        
+          <mat-paginator #paginator
+                         [pageSize]="10"
+                         [pageSizeOptions]="[3, 5, 10, 20]"
+                         [showFirstLastButtons]="true">
+          </mat-paginator>
+      </div>
+      
+      </mat-expansion-panel>
+      </mat-accordion>
+      
+      </mat-card-content>
+      </mat-card>
+
+
+
+      </div>
+      </div>
+</div>

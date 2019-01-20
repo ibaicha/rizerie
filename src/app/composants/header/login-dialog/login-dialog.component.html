@@ -1,0 +1,23 @@
+<h3 mat-dialog-title>Connexion</h3>
+<div>
+    <mat-form-field>
+        <input matInput required minlength="4"
+                placeholder="Compte Utilisateur"
+                [(ngModel)]="newLogin.username">
+    </mat-form-field>
+</div>
+<div>
+    <mat-form-field>
+        <input matInput  type="password" required minlength="4"
+                placeholder="Mot de passe"
+                [(ngModel)]="newLogin.password">
+    </mat-form-field>
+  
+</div>
+ 
+ 
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save(newLogin)">Save</button>
+</mat-dialog-actions>
